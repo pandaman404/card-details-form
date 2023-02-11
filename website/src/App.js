@@ -1,8 +1,13 @@
+import CreditCardContainer from "./components/CreditCardContainer";
+import FormContainer from "./components/FormContainer";
+import Wrapper from "./components/Wrapper";
+
 function App() {
   return (
-    <div>
-      <p>hola!</p>
-    </div>
+    <Wrapper>
+      <CreditCardContainer />
+      <FormContainer />
+    </Wrapper>
   );
 }
 
