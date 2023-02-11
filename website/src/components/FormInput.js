@@ -22,7 +22,7 @@ const Container = styled.div`
     font-size: 12px;
     margin-bottom: 10px;
 
-    @media (min-width: 1190px) {
+    @media (min-width: 1400px) {
       font-size: 13px;
     }
   }
@@ -54,7 +54,7 @@ const Container = styled.div`
     color: var(--red);
     top: 5px;
 
-    @media (min-width: 1190px) {
+    @media (min-width: 1400px) {
       font-size: 12px;
     }
   }

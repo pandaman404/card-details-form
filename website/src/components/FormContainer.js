@@ -126,11 +126,11 @@ const Container = styled.section`
   }
 
   @media (min-width: 1190px) {
-    top: 160px;
+    top: 150px;
   }
 
   @media (min-width: 1400px) {
-    top: 260px;
+    top: 280px;
     left: 100px;
   }
 `;
