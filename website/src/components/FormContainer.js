@@ -5,6 +5,14 @@ import FormInput from "./FormInput";
 import PrimaryButton from "./PrimaryButton";
 import CompleteState from "./CompleteState";
 
+const initialValues = {
+  cardholderName: "",
+  cardNumber: "",
+  expDateMM: "",
+  expDateYY: "",
+  cvc: "",
+};
+
 const validationSchema = Yup.object({
   cardholderName: Yup.string()
     .trim()
@@ -28,20 +36,16 @@ const validationSchema = Yup.object({
     .typeError("Wrong format, numbers only"),
 });
 
-const FormContainer = () => {
+const FormContainer = ({ getFormData }) => {
   const handleSubmit = (values) => {
+    console.log("-------------------");
     console.log(values);
   };
+
   return (
     <Container>
       <Formik
-        initialValues={{
-          cardholderName: "",
-          cardNumber: "",
-          expDateMM: "",
-          expDateYY: "",
-          cvc: "",
-        }}
+        initialValues={initialValues}
         onSubmit={handleSubmit}
         validationSchema={validationSchema}
       >
@@ -76,7 +80,11 @@ const FormContainer = () => {
             placeholder="e.g. 123"
             type="text"
           />
-          <PrimaryButton title="Confirm" type="submit" />
+          <PrimaryButton
+            title="Confirm"
+            type="submit"
+            getFormData={getFormData}
+          />
         </Form>
       </Formik>
 

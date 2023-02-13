@@ -1,7 +1,15 @@
+import { useFormikContext } from "formik";
+import { useEffect } from "react";
 import styled from "styled-components";
 
-const PrimaryButton = ({ title }) => {
-  return <Button>{title}</Button>;
+const PrimaryButton = ({ title, type, getFormData }) => {
+  const { values } = useFormikContext();
+
+  useEffect(() => {
+    getFormData(values);
+  }, [values]);
+
+  return <Button type={type}>{title}</Button>;
 };
 
 const Button = styled.button`
