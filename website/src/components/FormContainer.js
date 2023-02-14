@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import FormInput from "./FormInput";
-import PrimaryButton from "./PrimaryButton";
+import SubmitButton from "./SubmitButton";
 import CompleteState from "./CompleteState";
 
 const initialValues = {
@@ -21,19 +21,27 @@ const validationSchema = Yup.object({
       /^([A-Za-z\u00C0-\u00D6\u00D8-\u00f6\u00f8-\u00ff\s]*)$/gi,
       "Wrong format, letters only"
     )
-    .max(50, "The cardholder name is too long"),
-  cardNumber: Yup.number()
-    .required("Can't be blank")
-    .typeError("Wrong format, numbers only"),
-  expDateMM: Yup.number()
-    .required("Can't be blank")
-    .typeError("Wrong format, numbers only"),
-  expDateYY: Yup.number()
-    .required("Can't be blank")
-    .typeError("Wrong format, numbers only"),
-  cvc: Yup.number()
-    .required("Can't be blank")
-    .typeError("Wrong format, numbers only"),
+    .max(30, "The cardholder name is too long"),
+  cardNumber: Yup.string()
+    .matches(/^[0-9]*$/, "Wrong format, numbers only")
+    .min(16, "Enter a valid card number")
+    .max(16, "Enter a valid card number")
+    .required("Can't be blank"),
+  expDateMM: Yup.string()
+    .matches(/^[0-9]*$/, "Wrong format, numbers only")
+    .min(2, "Enter a valid month")
+    .max(2, "Enter a valid month")
+    .required("Can't be blank"),
+  expDateYY: Yup.string()
+    .matches(/^[0-9]*$/, "Wrong format, numbers only")
+    .min(2, "Enter a valid year")
+    .max(2, "Enter a valid year")
+    .required("Can't be blank"),
+  cvc: Yup.string()
+    .matches(/^[0-9]*$/, "Wrong format, numbers only")
+    .min(3, "Enter a valid cvc")
+    .max(3, "Enter a valid cvc")
+    .required("Can't be blank"),
 });
 
 const FormContainer = ({ getFormData }) => {
@@ -49,7 +57,7 @@ const FormContainer = ({ getFormData }) => {
         onSubmit={handleSubmit}
         validationSchema={validationSchema}
       >
-        <Form>
+        <Form autoComplete="off">
           <FormInput
             name="cardholderName"
             label="Cardholder Name"
@@ -80,11 +88,7 @@ const FormContainer = ({ getFormData }) => {
             placeholder="e.g. 123"
             type="text"
           />
-          <PrimaryButton
-            title="Confirm"
-            type="submit"
-            getFormData={getFormData}
-          />
+          <SubmitButton getFormData={getFormData} />
         </Form>
       </Formik>
 

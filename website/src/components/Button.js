@@ -1,16 +1,4 @@
-import { useFormikContext } from "formik";
-import { useEffect } from "react";
 import styled from "styled-components";
-
-const PrimaryButton = ({ title, type, getFormData }) => {
-  const { values } = useFormikContext();
-
-  useEffect(() => {
-    getFormData(values);
-  }, [values]);
-
-  return <Button type={type}>{title}</Button>;
-};
 
 const Button = styled.button`
   border: 0px;
@@ -29,4 +17,4 @@ const Button = styled.button`
   }
 `;
 
-export default PrimaryButton;
+export default Button;

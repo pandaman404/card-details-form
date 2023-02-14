@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import PrimaryButton from "./PrimaryButton";
+import Button from "./Button";
 
 const CompleteState = () => {
   return (
@@ -7,7 +7,7 @@ const CompleteState = () => {
       <img src="/images/icon-complete.svg" alt="" />
       <h2>Thank You!</h2>
       <p>We've added your card details</p>
-      <PrimaryButton title="continue" type="button" />
+      <Button onClick={() => console.log("Continuar")}>Continue</Button>
     </Container>
   );
 };
