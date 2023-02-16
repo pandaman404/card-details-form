@@ -1,10 +1,11 @@
 import styled from "styled-components";
 import Button from "./Button";
+import iconComplete from "../images/icon-complete.svg";
 
 const CompleteState = () => {
   return (
     <Container>
-      <img src="/images/icon-complete.svg" alt="" />
+      <img src={iconComplete} alt="Check" />
       <h2>Thank You!</h2>
       <p>We've added your card details</p>
       <Button onClick={() => console.log("Hi!")}>Continue</Button>

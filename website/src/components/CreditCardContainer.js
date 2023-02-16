@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import CreditCard from "./CreditCard";
+import bgMainDesktop from "../images/bg-main-desktop.png";
+import bgMainMobile from "../images/bg-main-mobile.png";
 
 const CreditCardContainer = ({ formData }) => {
   return (
@@ -10,13 +12,13 @@ const CreditCardContainer = ({ formData }) => {
 };
 
 const Container = styled.section`
-  background-image: url("/images/bg-main-mobile.png");
+  background-image: url(${bgMainMobile});
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
 
   @media (min-width: 1190px) {
-    background-image: url("/images/bg-main-desktop.png");
+    background-image: url(${bgMainDesktop});
     height: 100%;
   }
 `;

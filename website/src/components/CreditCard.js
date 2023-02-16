@@ -1,4 +1,7 @@
 import styled from "styled-components";
+import cardLogo from "../images/card-logo.svg";
+import bgCardBack from "../images/bg-card-back.png";
+import bgCardFront from "../images/bg-card-front.png";
 
 const CreditCard = ({ formData }) => {
   return (
@@ -7,11 +10,7 @@ const CreditCard = ({ formData }) => {
         <p className="cvc">{formData.cvc.trim().slice(0, 3) || "000"}</p>
       </CardBack>
       <CardFront>
-        <img
-          className="card-logo"
-          src="/images/card-logo.svg"
-          alt="Card Logo"
-        />
+        <img className="card-logo" src={cardLogo} alt="Card Logo" />
         <p className="card-number">
           {formData.cardNumber.length > 0
             ? formData.cardNumber
@@ -75,7 +74,7 @@ const Container = styled.div`
 const Card = styled.div`
   height: 158px;
   width: 289px;
-  background-image: url("/images/bg-card-back.png");
+  background-image: url(${bgCardBack});
   background-repeat: no-repeat;
   background-size: contain;
   position: relative;
@@ -137,7 +136,7 @@ const CardBack = styled(Card)`
 `;
 
 const CardFront = styled(Card)`
-  background-image: url("/images/bg-card-front.png");
+  background-image: url(${bgCardFront});
   bottom: 43%;
   z-index: 2;
   padding: 20px;
