@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
-const CreditCard = () => {
+const CreditCard = ({ formData }) => {
   return (
     <Container>
       <CardBack>
-        <p className="cvc">000</p>
+        <p className="cvc">{formData.cvc.trim().slice(0, 3) || "000"}</p>
       </CardBack>
       <CardFront>
         <img
@@ -13,12 +13,41 @@ const CreditCard = () => {
           alt="Card Logo"
         />
         <p className="card-number">
-          0000 <span className="text-space" /> 0000{" "}
-          <span className="text-space" /> 0000 <span className="text-space" />{" "}
-          0000
+          {formData.cardNumber.length > 0
+            ? formData.cardNumber
+                .trim()
+                .slice(0, 16)
+                .split("")
+                .map((number, i) => {
+                  if ((i + 1) % 4 === 0) {
+                    return (
+                      <span key={i}>
+                        {number}
+                        <span className="text-space" />
+                      </span>
+                    );
+                  }
+                  return <span key={i}>{number}</span>;
+                })
+            : "0000000000000000".split("").map((number, i) => {
+                if ((i + 1) % 4 === 0) {
+                  return (
+                    <span key={i}>
+                      {number}
+                      <span className="text-space" />
+                    </span>
+                  );
+                }
+                return <span key={i}>{number}</span>;
+              })}
         </p>
-        <p className="card-name">Jane Appleseed</p>
-        <p className="card-exp-date">00/00</p>
+        <p className="card-name">
+          {formData.cardholderName.trim().slice(0, 30) || "Jane Appleseed"}
+        </p>
+        <p className="card-exp-date">
+          {formData.expDateMM.trim().slice(0, 2) || "00"}/
+          {formData.expDateYY.trim().slice(0, 2) || "00"}
+        </p>
       </CardFront>
     </Container>
   );
@@ -113,7 +142,7 @@ const CardFront = styled(Card)`
   z-index: 2;
   padding: 20px;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 80% 20%;
   grid-template-rows: 1fr minmax(5px, max-content) minmax(5px, max-content);
 
   .card-logo {
@@ -134,12 +163,16 @@ const CardFront = styled(Card)`
 
   .card-number {
     grid-column: 1 / 3;
-    font-size: 19px;
     text-align: center;
     margin-bottom: 15px;
+    font-size: 19px;
 
     .text-space {
-      margin-right: 2px;
+      margin-right: 5px;
+
+      @media (min-width: 1190px) {
+        margin-right: 10px;
+      }
     }
 
     @media (min-width: 1190px) {

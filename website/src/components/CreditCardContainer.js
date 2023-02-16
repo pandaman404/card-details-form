@@ -4,9 +4,7 @@ import CreditCard from "./CreditCard";
 const CreditCardContainer = ({ formData }) => {
   return (
     <Container>
-      <CreditCard />
-      <p style={{ color: "white" }}>{formData.cardholderName}</p>
-      <p style={{ color: "white" }}>{formData.cardNumber}</p>
+      <CreditCard formData={formData} />
     </Container>
   );
 };

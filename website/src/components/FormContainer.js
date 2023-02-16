@@ -44,55 +44,54 @@ const validationSchema = Yup.object({
     .required("Can't be blank"),
 });
 
-const FormContainer = ({ getFormData }) => {
-  const handleSubmit = (values) => {
-    console.log("-------------------");
-    console.log(values);
-  };
-
+const FormContainer = ({ getFormData, completeState, handleSubmit }) => {
   return (
     <Container>
-      <Formik
-        initialValues={initialValues}
-        onSubmit={handleSubmit}
-        validationSchema={validationSchema}
-      >
-        <Form autoComplete="off">
-          <FormInput
-            name="cardholderName"
-            label="Cardholder Name"
-            placeholder="e.g. Jane Appleseed"
-            type="text"
-          />
-          <FormInput
-            name="cardNumber"
-            label="Card Number"
-            placeholder="e.g. 1234 5678 9123 0000"
-            type="text"
-          />
-          <FormInput
-            name="expDateMM"
-            label="Exp. Date"
-            placeholder="MM"
-            type="text"
-          />
-          <FormInput
-            name="expDateYY"
-            label="(MM/YY)"
-            placeholder="YY"
-            type="text"
-          />
-          <FormInput
-            name="cvc"
-            label="cvc"
-            placeholder="e.g. 123"
-            type="text"
-          />
-          <SubmitButton getFormData={getFormData} />
-        </Form>
-      </Formik>
-
-      {/* <CompleteState /> */}
+      {completeState ? (
+        <CompleteState />
+      ) : (
+        <Formik
+          initialValues={initialValues}
+          onSubmit={(values, actions) =>
+            handleSubmit(values, actions.resetForm)
+          }
+          validationSchema={validationSchema}
+        >
+          <Form autoComplete="off">
+            <FormInput
+              name="cardholderName"
+              label="Cardholder Name"
+              placeholder="e.g. Jane Appleseed"
+              type="text"
+            />
+            <FormInput
+              name="cardNumber"
+              label="Card Number"
+              placeholder="e.g. 1234 5678 9123 0000"
+              type="text"
+            />
+            <FormInput
+              name="expDateMM"
+              label="Exp. Date"
+              placeholder="MM"
+              type="text"
+            />
+            <FormInput
+              name="expDateYY"
+              label="(MM/YY)"
+              placeholder="YY"
+              type="text"
+            />
+            <FormInput
+              name="cvc"
+              label="cvc"
+              placeholder="e.g. 123"
+              type="text"
+            />
+            <SubmitButton getFormData={getFormData} />
+          </Form>
+        </Formik>
+      )}
     </Container>
   );
 };

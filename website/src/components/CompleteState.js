@@ -7,7 +7,7 @@ const CompleteState = () => {
       <img src="/images/icon-complete.svg" alt="" />
       <h2>Thank You!</h2>
       <p>We've added your card details</p>
-      <Button onClick={() => console.log("Continuar")}>Continue</Button>
+      <Button onClick={() => console.log("Hi!")}>Continue</Button>
     </Container>
   );
 };
